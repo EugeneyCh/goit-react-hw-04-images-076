@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import css from './ImageGallery.module.css';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
@@ -14,17 +14,15 @@ function ImageGallery({ searchQuery }) {
     setCurrentPage(currentPage => currentPage + 1);
   };
 
-  const clearPages = searchQuery => {
-    if (searchQuery) {
-      setCurrentPage(() => 1);
-    }
+  // Еще вариант - пробросил функцию очистки в хук
+  const clearPages = () => {
+    setCurrentPage(() => 1);
   };
-
-  useMemo(() => clearPages(searchQuery), [searchQuery]);
 
   const [pictures, isLoading, hasNextPage] = useGetFetchImages(
     searchQuery,
-    currentPage
+    currentPage,
+    clearPages
   );
 
   const toggleModal = () => {

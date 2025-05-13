@@ -7,6 +7,7 @@ import Modal from 'components/Modal/Modal';
 import { useGetFetchImages } from 'components/Hooks/hooks';
 
 function ImageGallery({ searchQuery }) {
+
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -14,7 +15,7 @@ function ImageGallery({ searchQuery }) {
     setCurrentPage(currentPage => currentPage + 1);
   };
 
-  const clearPages = searchQuery => {
+  const clearPages = (searchQuery) => {
     if (searchQuery) {
       setCurrentPage(() => 1);
     }
